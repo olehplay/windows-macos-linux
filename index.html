@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Operating System Instructions</title>
+    <style>
+      /* Styling for the buttons */
+      .corresponding-btn {
+        padding: 5px 14px;
+        margin: 5px;
+        cursor: pointer;
+        border-radius: 10px;
+        border: none;
+        color: #fff;
+        background-color: #ff8a00;
+        cursor: pointer;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        transition: 0.3s ease-in-out;
+        font-family: inherit;
+        font-weight: 600;
+        font-size: 18px;
+        display: inline;
+      }
+
+      .corresponding-btn i {
+        margin-right: 5px;
+      }
+
+      .corresponding-btn:hover,
+      .corresponding-btn:focus,
+      .corresponding-btn.selected-btn {
+        /* Modified to highlight the selected button */
+        background-color: #d27204;
+      }
+
+      /* New class for the selected button */
+      .selected-btn {
+        background-color: #d27204;
+      }
+
+      /* Hide all instruction blocks by default */
+      .instructions {
+        display: none;
+        margin-top: 20px;
+        border: 3px solid #ff8a00;
+        border-radius: 10px;
+        padding: 10px;
+      }
+
+      code {
+        color: crimson;
+        background-color: #e2e2e2;
+        padding-left: 4px;
+        padding-right: 5px;
+        border-radius: 4px;
+        font-family: Monaco, Ubuntu Mono, sans-serif;
+        font-size: 16px;
+      }
+
+      .instructions ul {
+        list-style: disc;
+        margin-left: 25px;
+      }
+
+      .instructions li {
+        padding: 4px 0;
+        line-height: 1.5;
+      }
+
+      .instructions h2 {
+        color: #363636;
+        font-weight: 600;
+      }
+
+      .instructions p {
+        font-size: 16px;
+        line-height: 22px;
+        padding: 8px 0 16px;
+      }
+    </style>
+
+    <!-- Include Font Awesome CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Windows button with icon -->
+    <button
+      class="corresponding-btn selected-btn"
+      onclick="showInstructions('windows')"
+      id="windowsBtn"
+    >
+      <i class="fab fa-windows"></i> Windows
+    </button>
+
+    <!-- macOS button with icon -->
+    <button
+      class="corresponding-btn"
+      onclick="showInstructions('macos')"
+      id="macosBtn"
+    >
+      <i class="fab fa-apple"></i> macOS
+    </button>
+
+    <!-- Linux button with icon -->
+    <button
+      class="corresponding-btn"
+      onclick="showInstructions('linux')"
+      id="linuxBtn"
+    >
+      <i class="fab fa-linux"></i> Linux
+    </button>
+
+    <!-- Instructions for Windows (Visible by default) -->
+    <div class="instructions" id="windowsInstructions">
+      <h2>Windows Instructions</h2>
+      <ul>
+        <li>
+          Locate the downloaded Node.js installer (e.g.,
+          <code>node-vXX.XX.X-x64.msi</code>) on the computer and double-click
+          it to start the installation process.
+        </li>
+        <li>
+          The setup wizard will guide through the installation. Click "Next" to
+          continue.
+        </li>
+        <li>Accept the license agreement and click "Next."</li>
+        <li>
+          Choose the destination folder where Node.js will be installed or stick
+          with the default location. Click "Next."
+        </li>
+        <li>
+          Select the components to install. It's recommended to keep the default
+          options, including npm. Click "Next."
+        </li>
+        <li>
+          Choose whether to include the Node.js runtime in the system's PATH
+          environment variable. Select "Automatically" for most cases. This will
+          allow running Node.js from any command prompt. Click "Next."
+        </li>
+        <li>Click "Install" to begin the installation process.</li>
+        <li>
+          Once the installation is complete, click "Finish" to exit the setup
+          wizard.
+        </li>
+      </ul>
+    </div>
+
+    <!-- Instructions for macOS -->
+    <div class="instructions" id="macosInstructions">
+      <h2>macOS Instructions</h2>
+      <ul>
+        <li>
+          Locate the downloaded Node.js package (e.g.,
+          <code>node-vXX.XX.X.pkg</code>) on the computer and double-click it to
+          start the installation.
+        </li>
+        <li>The package installer will open. Click "Continue."</li>
+        <li>
+          Read the license agreement, click "Continue," and then click "Agree"
+          to accept it.
+        </li>
+        <li>
+          Choose the destination where Node.js will be installed. The default
+          location should be appropriate for most users. Click "Continue."
+        </li>
+        <li>
+          Click "Install" to start the installation process. You may be prompted
+          to enter the computer's password to proceed.
+        </li>
+        <li>
+          Once the installation is complete, click "Close" to exit the
+          installer.
+        </li>
+      </ul>
+    </div>
+
+    <!-- Instructions for Linux -->
+    <div class="instructions" id="linuxInstructions">
+      <h2>Linux Instructions</h2>
+      <p>
+        For Linux users, the installation process can vary depending on the
+        distribution. However, most distributions provide Node.js in their
+        package repositories.
+      </p>
+      <ul>
+        <li>Open a terminal on the Linux system.</li>
+        <li>
+          Use the package manager specific to the distribution to install
+          Node.js. For example:
+          <ul>
+            <li>On Ubuntu/Debian: <code>sudo apt install nodejs</code></li>
+            <li>On Fedora: <code>sudo dnf install nodejs</code></li>
+            <li>On CentOS/RHEL: <code>sudo yum install nodejs</code></li>
+          </ul>
+        </li>
+        <li>
+          Verify the installation by checking the installed versions of Node.js
+          and npm:
+          <ul>
+            <li>To check Node.js: <code>node -v</code></li>
+            <li>To check npm: <code>npm -v</code></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <script>
+      // Show Windows instructions and highlight the Windows button by default on page load
+      document.getElementById("windowsInstructions").style.display = "block";
+      document.getElementById("windowsBtn").classList.add("selected-btn");
+
+      function showInstructions(os) {
+        // Hide all instruction blocks
+        const instructionBlocks =
+          document.getElementsByClassName("instructions");
+        for (let i = 0; i < instructionBlocks.length; i++) {
+          instructionBlocks[i].style.display = "none";
+        }
+
+        // Show the selected instruction block
+        const selectedInstruction = document.getElementById(
+          `${os}Instructions`
+        );
+        selectedInstruction.style.display = "block";
+
+        // Remove 'selected-btn' class from all buttons
+        const buttons = document.getElementsByClassName("corresponding-btn");
+        for (let i = 0; i < buttons.length; i++) {
+          buttons[i].classList.remove("selected-btn");
+        }
+
+        // Add 'selected-btn' class to the currently clicked button
+        const selectedButton = document.getElementById(`${os}Btn`);
+        selectedButton.classList.add("selected-btn");
+      }
+    </script>
+  </body>
+</html>
